@@ -33,7 +33,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                   <img
                     className="h-6"
                     src={`/images/${theme === "dark" ? "moon.svg" : "sun.svg"}`}
-                  ></img>
+                   alt=""></img>
                 </Button>
                 <Popover.Button>
                   <img
@@ -47,7 +47,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                         ? "cancel.svg"
                         : "cancel-white.svg"
                     }`}
-                  ></img>
+                   alt=""></img>
                 </Popover.Button>
               </div>
             </div>
@@ -89,13 +89,13 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
         )}
       </Popover>
       <div
-        className={`mt-10 hidden flex-row items-center justify-between sticky ${
-          theme === "light" && "bg-white"
+        className={`mt-10 hidden flex-row items-center justify-between sticky backdrop-blur-2xl w-full  ${
+          theme === "light" && "backdrop-blur-2xl"
         } dark:text-white top-0 z-10 tablet:flex`}
       >
         <h1
           onClick={() => router.push("/")}
-          className="font-medium cursor-pointer mob:p-2 laptop:p-0"
+          className="font-medium ml-6 cursor-pointer mob:p-2 laptop:p-0"
         >
           {data.name}.
         </h1>

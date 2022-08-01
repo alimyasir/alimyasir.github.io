@@ -2,13 +2,13 @@ import React from "react";
 import Button from "../Button";
 
 import yourData from "../../data/portfolio.json";
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 const Socials = ({ className }) => {
   return (
     <div className={`${className} flex flex-wrap mob:flex-nowrap`}>
       {yourData.socials.map((social, index) => (
         <Button key={index} onClick={() => window.open(social.link)}>
-          {social.title}
+          <FontAwesomeIcon icon={social.title} />
         </Button>
       ))}
     </div>
