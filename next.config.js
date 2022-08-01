@@ -7,5 +7,5 @@ module.exports = nextConfig
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  assetPrefix: isProd ? '/RizwanNaasir.github.io/' : ''
+  assetPrefix: isProd ? '/portfolio/' : ''
 }
