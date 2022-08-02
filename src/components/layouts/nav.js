@@ -33,8 +33,6 @@ function Nav(props) {
                                 <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true"/>
                             </div>
                             <input
-                                value={props.value}
-                                onChange={props.onChange}
                                 id="search"
                                 name="search"
                                 className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-rose-500 focus:border-rose-500 sm:text-sm"
@@ -44,18 +42,6 @@ function Nav(props) {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
-                {/* Mobile menu button */}
-                <Popover.Button
-                    className="-mx-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500">
-                    <span className="sr-only">Open menu</span>
-                    {props.open ? (
-                        <XIcon className="block h-6 w-6" aria-hidden="true"/>
-                    ) : (
-                        <MenuIcon className="block h-6 w-6" aria-hidden="true"/>
-                    )}
-                </Popover.Button>
             </div>
             <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
                 {props.user ?

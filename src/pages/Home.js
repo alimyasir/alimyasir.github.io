@@ -6,10 +6,9 @@ function Home() {
     return (
 
         <div className="App">
-            {/*<Nav/>*/}
-            <div className="flex flex-col items-center justify-center h-screen">
-                <h1>Home</h1>
-            </div>
+            <Nav />
+            <h2 className="text-4xl font-bold leading-7 text-gray-800 sm:text-7xl sm:truncate">
+                Hi I'm Rizwan Nasir</h2>
         </div>
     )
 }
