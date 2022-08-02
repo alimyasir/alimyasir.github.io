@@ -1,18 +1,23 @@
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
-  darkMode: "class",
-  theme: {
-    screens: {
-      mob: "375px",
-      tablet: "768px",
-      laptop: "1024px",
-      desktop: "1280px",
-      laptopl: "1440px",
+    content: [
+        "./src/**/*.{js,jsx,ts,tsx}",
+    ],
+    theme: {
+        extend: {
+
+            // that is animation class
+            animation: {
+                fade: 'fadeOut 5s ease-in-out',
+            },
+
+            // that is actual animation
+            keyframes: theme => ({
+                fadeOut: {
+                    '0%': {backgroundColor: theme('colors.red.300')},
+                    '100%': {backgroundColor: theme('colors.transparent')},
+                },
+            }),
+        },
     },
-    extend: {},
-  },
-  plugins: [],
-};
+    plugins: [],
+}
