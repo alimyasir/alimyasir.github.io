@@ -58,6 +58,7 @@ typings/
 .env.local
 
 build/
+out/
 build-storybook/
 public/sitemap.xml
 public/draco/
