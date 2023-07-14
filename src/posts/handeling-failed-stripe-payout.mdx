@@ -1,0 +1,87 @@
+---
+title: Stripe Payouts Streamlining Your Withdrawal Process
+abstract: Simplify and Optimize Your Payouts with Stripe's Payouts API
+date: '2023-03-29'
+banner: /static/recieving-payouts.png
+featured: false
+---
+Handling Failure Payouts.
+=====================
+So you will receive a web hook `payout.failed` with meta data including reason of failure and codes.
+
+[![preview](/static/payout-webhook.png)](https://hamishw.com)
+
+Here's a list of the failure codes and their meanings:
+	1. `account_closed`: The bank account associated with the payout has been closed.
+	2. `account_frozen`: The bank account associated with the payout has been frozen.
+	3. `bank_account_restricted`: The bank account has restrictions on the type or number of payouts allowed, often indicating that it is a savings or non-checking account.
+	4. `bank_ownership_changed`: The destination bank account is no longer valid because its branch has changed ownership.
+	5. `could_not_process`: The bank was unable to process the payout.
+	6. `debit_not_authorized`: Debit transactions are not approved on the bank account. Stripe requires bank accounts to be set up for both credit and debit payouts.
+	7. `declined`: The bank has declined the transfer. It is recommended to contact the bank for further clarification before retrying.
+	8. `insufficient_funds`: The Stripe account has insufficient funds to cover the payout.
+	9. `invalid_account_number`: The routing number appears correct, but the account number is invalid.
+	10. `incorrect_account_holder_name`: The bank has notified Stripe that the bank account holder name on file is incorrect.
+	11. `incorrect_account_holder_address`: The bank has notified Stripe that the bank account holder address on file is incorrect.
+	12. `incorrect_account_holder_tax_id`: The bank has notified Stripe that the bank account holder tax ID on file is incorrect.
+	13. `invalid_currency`: The bank was unable to process the payout due to currency incompatibility. This might occur when the bank account cannot accept payments in the specified currency.
+	14. `no_account`: The bank account details on file are likely incorrect, and no bank account could be located with those details.
+	15. `unsupported_card`: The bank no longer supports payouts to the specified card.
+
+### And the structure
+
+```json
+{
+  "id": "po_1NTSazHTGgsC5BiiIn54l5Nb",
+  "object": "payout",
+  "amount": 1100,
+  "arrival_date": 1689206400,
+  "automatic": true,
+  "balance_transaction": "txn_3LZZ3PHTGgsC5Bii0HVQ6XOs",
+  "created": 1689266545,
+  "currency": "usd",
+  "description": "STRIPE PAYOUT",
+  "destination": "ba_1NTSazHTGgsC5BiiS52u0ep2",
+  "failure_balance_transaction": null,
+  "failure_code": null,
+  "failure_message": null,
+  "livemode": false,
+  "metadata": {},
+  "method": "standard",
+  "original_payout": null,
+  "reconciliation_status": "not_applicable",
+  "reversed_by": null,
+  "source_type": "card",
+  "statement_descriptor": null,
+  "status": "in_transit",
+  "type": "bank_account"
+}
+```
+
+So you will find the payout from your transactions table follow these steps
+
+1. Notify the User:
+    - Inform the user promptly about the failed payout through email or in-app notifications.
+    - Clearly explain the reason for the failure, referencing the specific failure code or providing a user-friendly explanation of the issue.
+    
+2. Provide Instructions:
+    - Instruct the user to review and correct the inputs or details associated with the failed payout.
+    - Clearly communicate what needs to be corrected, such as bank account information, account holder name, or any other relevant details.
+    - Offer guidance on how they can update the information within your app.
+    
+3. Update User Interface:
+    - Modify the user interface in your app to allow users to easily access and update the necessary information.
+    - Provide clear instructions and intuitive design elements to guide users through the correction process.
+    - Consider implementing validation checks to ensure that corrected inputs meet the required format and criteria.
+    
+4. Assistance and Support:
+    - Offer support channels, such as customer service or help desk, where users can reach out for assistance.
+    - Provide prompt responses to user inquiries and be prepared to address any questions or concerns they may have regarding the failed payout.
+    
+5. Retrying the Payout:
+    - Once the user has corrected the necessary inputs, you can automatically schedule a retry of the payout at the next payout interval.
+    - Initiate the payout using the updated and verified information.
+    
+6. Monitoring and Communication:
+    - Continuously monitor the status of retried payouts and keep the user informed of any updates or changes in the payout status.
+    - Consider sending email notifications or in-app messages to inform the user about the retry attempt and subsequent status changes.
